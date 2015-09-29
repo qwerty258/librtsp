@@ -23,5 +23,8 @@
     <ClInclude Include="..\include\libRTSP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dataTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
