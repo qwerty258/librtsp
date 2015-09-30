@@ -27,7 +27,7 @@ typedef struct _RTSPRequest
 typedef struct _RTSPResponse
 {
     unsigned int sequenceNumber;
-    unsigned int statusCode
+    unsigned int statusCode;
 }RTSPResponse;
 
 typedef struct _RTSPClientInstance
