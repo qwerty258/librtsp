@@ -81,7 +81,7 @@ LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)
         }
         else if(RTSPUsingUDP == protocol)
         {
-            pRTSPClientInstance->sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+            pRTSPClientInstance->sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
             if(INVALID_SOCKET == pRTSPClientInstance->sock)
             {
                 handleErrorForLibRTSP("socket", __FILE__, __LINE__, WSAGetLastError());
