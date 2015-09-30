@@ -33,6 +33,7 @@ typedef struct _RTSPResponse
 typedef struct _RTSPClientInstance
 {
     char* URI;
+    RTSPProtocol protocol;
     SOCKET sock;
     RTSPRequest request;
     RTSPResponse response;
