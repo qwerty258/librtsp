@@ -14,6 +14,20 @@
 
 LIBRTSPEXTERNC_HEAD
 
-LIBRTSP_API int fnlibRTSP(void);
+// API for client usage begin
+
+LIBRTSP_API unsigned int initializeDLLAsRTSPClient(void);
+
+LIBRTSP_API unsigned int freeRTSPClinetDLL(void);
+
+// API for client usage end
+
+// API for server usage begin
+
+LIBRTSP_API unsigned int initializeDLLAsRTSPServer(void);
+
+LIBRTSP_API unsigned int freeRTSPServerDLL(void);
+
+// API for serverusage end
 
 LIBRTSPEXTERNC_TILE
