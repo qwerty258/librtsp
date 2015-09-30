@@ -33,6 +33,10 @@ LIBRTSP_API unsigned int freeRTSPClinetDLL(void)
 LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void)
 {
     RTSPClientInstance* pRTSPClientInstance = (RTSPClientInstance*)calloc(1, sizeof(RTSPClientInstance));
+    if(NULL != pRTSPClientInstance)
+    {
+        pRTSPClientInstance->sock = INVALID_SOCKET;
+    }
     return pRTSPClientInstance;
 }
 
