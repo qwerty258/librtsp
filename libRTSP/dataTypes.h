@@ -1,5 +1,7 @@
 #pragma once
 
+#include <WinSock2.h>
+
 typedef enum _RTSPMethod
 {
     OPTIONS = 1,
@@ -27,3 +29,11 @@ typedef struct _RTSPResponse
     unsigned int sequenceNumber;
     unsigned int statusCode
 }RTSPResponse;
+
+typedef struct _RTSPClientInstance
+{
+    char* URI;
+    SOCKET sock;
+    RTSPRequest request;
+    RTSPResponse response;
+}RTSPClientInstance;

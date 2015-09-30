@@ -3,16 +3,8 @@
 #include <limits.h>
 // Windows Header Files:
 #include <SDKDDKVer.h>
-#include <WinSock2.h>
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 #include <Windows.h>
-
-typedef struct _RTSPClientInstance
-{
-    SOCKET sock;
-    RTSPRequest request;
-    RTSPResponse response;
-}RTSPClientInstance;
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPClient(void)
 {
