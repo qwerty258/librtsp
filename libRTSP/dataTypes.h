@@ -4,7 +4,7 @@
 
 typedef enum _RTSPMethod
 {
-    UNSPECIFIED = 0,
+    MethodUnspecified = 0,
     OPTIONS,
     DESCRIBE,
     ANNOUNCE,
