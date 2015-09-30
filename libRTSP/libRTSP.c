@@ -1,10 +1,13 @@
 #include "libRTSP.h"
+#include "handleError.h"
 #include "dataTypes.h"
 #include <limits.h>
 // Windows Header Files:
 #include <SDKDDKVer.h>
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 #include <Windows.h>
+
+#define strdup _strdup
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPClient(void)
 {
@@ -35,11 +38,28 @@ LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void)
 
 LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
 {
-    if(NULL != handle || NULL != (*handle))
+    RTSPClientInstance** pRTSPClientInstance = handle;
+    int result = 0;
+    if(NULL != pRTSPClientInstance || NULL != (*pRTSPClientInstance))
     {
-        free(*handle);
-        (*handle) = NULL;
+        result = closesocket((*pRTSPClientInstance)->sock);
+        free(*pRTSPClientInstance);
+        (*pRTSPClientInstance) = NULL;
     }
+    if(0 != result)
+    {
+        handleErrorForLibRTSP("closesocket", __FILE__, __LINE__, WSAGetLastError());
+    }
+}
+
+LIBRTSP_API void setRTSPURI(RTSPClientHandle handle, char* URI)
+{
+    RTSPClientInstance* pRTSPClientInstance = handle;
+    if(NULL != pRTSPClientInstance->URI)
+    {
+        free(pRTSPClientInstance->URI);
+    }
+    pRTSPClientInstance->URI = strdup(URI);
 }
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPServer(void)
