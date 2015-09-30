@@ -7,6 +7,9 @@
 #ifdef __cplusplus
 #define LIBRTSPEXTERNC_HEAD extern "C" {
 #define LIBRTSPEXTERNC_TILE }
+#else
+#define LIBRTSPEXTERNC_HEAD
+#define LIBRTSPEXTERNC_TILE
 #endif // __cplusplus
 
 LIBRTSPEXTERNC_HEAD
