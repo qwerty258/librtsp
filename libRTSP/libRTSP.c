@@ -38,7 +38,7 @@ LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void)
 
 LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
 {
-    RTSPClientInstance** pRTSPClientInstance = handle;
+    RTSPClientInstance** pRTSPClientInstance = (RTSPClientInstance**)handle;
     int result = 0;
     if(NULL != pRTSPClientInstance || NULL != (*pRTSPClientInstance))
     {
