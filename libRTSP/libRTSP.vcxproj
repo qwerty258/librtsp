@@ -78,7 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="libRTSP.cpp" />
+    <ClCompile Include="libRTSP.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\libRTSP.h" />
