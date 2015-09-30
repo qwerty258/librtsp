@@ -42,7 +42,10 @@ LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
     int result = 0;
     if(NULL != pRTSPClientInstance || NULL != (*pRTSPClientInstance))
     {
-        result = closesocket((*pRTSPClientInstance)->sock);
+        if(INVALID_SOCKET != (*pRTSPClientInstance)->sock)
+        {
+            result = closesocket((*pRTSPClientInstance)->sock);
+        }
         free(*pRTSPClientInstance);
         (*pRTSPClientInstance) = NULL;
     }
