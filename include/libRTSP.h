@@ -15,6 +15,12 @@
 
 LIBRTSPEXTERNC_HEAD
 
+typedef enum _RTSPProtocol
+{
+    RTSPUsingTCP,
+    RTSPUsingUDP
+}RTSPProtocol;
+
 // API for client usage begin
 
 typedef void* RTSPClientHandle;
@@ -30,6 +36,8 @@ LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void);
 LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle);
 
 LIBRTSP_API void setRTSPURI(RTSPClientHandle handle, char* URI);
+
+LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol);
 
 // API for client usage end
 

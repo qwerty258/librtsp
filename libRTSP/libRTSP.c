@@ -55,11 +55,43 @@ LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
 LIBRTSP_API void setRTSPURI(RTSPClientHandle handle, char* URI)
 {
     RTSPClientInstance* pRTSPClientInstance = handle;
-    if(NULL != pRTSPClientInstance->URI)
+    if(NULL != pRTSPClientInstance)
     {
-        free(pRTSPClientInstance->URI);
+
+        if(NULL != pRTSPClientInstance->URI)
+        {
+            free(pRTSPClientInstance->URI);
+        }
+        pRTSPClientInstance->URI = strdup(URI);
     }
-    pRTSPClientInstance->URI = strdup(URI);
+}
+
+LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)
+{
+    RTSPClientInstance* pRTSPClientInstance = handle;
+    if(NULL != pRTSPClientInstance)
+    {
+        if(RTSPUsingTCP == protocol)
+        {
+            pRTSPClientInstance->sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+            if(INVALID_SOCKET == pRTSPClientInstance->sock)
+            {
+                handleErrorForLibRTSP("socket", __FILE__, __LINE__, WSAGetLastError());
+            }
+        }
+        else if(RTSPUsingUDP == protocol)
+        {
+            pRTSPClientInstance->sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+            if(INVALID_SOCKET == pRTSPClientInstance->sock)
+            {
+                handleErrorForLibRTSP("socket", __FILE__, __LINE__, WSAGetLastError());
+            }
+        }
+        else
+        {
+            handleErrorForLibRTSP("setRTSPProtocol unknow protocol", __FILE__, __LINE__, 0);
+        }
+    }
 }
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPServer(void)
