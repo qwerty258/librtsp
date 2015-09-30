@@ -78,11 +78,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="handleError.c" />
     <ClCompile Include="libRTSP.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\libRTSP.h" />
     <ClInclude Include="dataTypes.h" />
+    <ClInclude Include="handleError.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
