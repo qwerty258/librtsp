@@ -1,3 +1,4 @@
+#pragma once
 #ifdef LIBRTSP_EXPORTS
 #define LIBRTSP_API __declspec(dllexport)
 #else
