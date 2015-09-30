@@ -17,6 +17,7 @@ LIBRTSPEXTERNC_HEAD
 
 typedef enum _RTSPProtocol
 {
+    RTSPProtocolUnspecified = 0,
     RTSPUsingTCP,
     RTSPUsingUDP
 }RTSPProtocol;
