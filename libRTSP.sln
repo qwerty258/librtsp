@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libRTSP", "libRTSP\libRTSP.vcxproj", "{1B2D484B-15AD-4BA3-ADE6-1F648E650CCA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "generalTest", "generalTest\generalTest.vcxproj", "{0BB07205-51BC-4538-AE5B-F1B113415C0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{1B2D484B-15AD-4BA3-ADE6-1F648E650CCA}.Debug|Win32.Build.0 = Debug|Win32
 		{1B2D484B-15AD-4BA3-ADE6-1F648E650CCA}.Release|Win32.ActiveCfg = Release|Win32
 		{1B2D484B-15AD-4BA3-ADE6-1F648E650CCA}.Release|Win32.Build.0 = Release|Win32
+		{0BB07205-51BC-4538-AE5B-F1B113415C0D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0BB07205-51BC-4538-AE5B-F1B113415C0D}.Debug|Win32.Build.0 = Debug|Win32
+		{0BB07205-51BC-4538-AE5B-F1B113415C0D}.Release|Win32.ActiveCfg = Release|Win32
+		{0BB07205-51BC-4538-AE5B-F1B113415C0D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
