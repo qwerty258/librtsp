@@ -16,7 +16,12 @@ LIBRTSPEXTERNC_HEAD
 
 // API for client usage begin
 
+typedef void* RTSPClientHandle;
+#define ISRTSPCLIENTHANDLEVALID(rtspClientHandle) NULL == (rtspClientHandle) ? false : true;
+
 LIBRTSP_API unsigned int initializeDLLAsRTSPClient(void);
+
+LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void);
 
 LIBRTSP_API unsigned int freeRTSPClinetDLL(void);
 
