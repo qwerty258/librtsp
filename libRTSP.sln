@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libRTSP", "libRTSP\libRTSP.vcxproj", "{1B2D484B-15AD-4BA3-ADE6-1F648E650CCA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "generalTest", "generalTest\generalTest.vcxproj", "{0BB07205-51BC-4538-AE5B-F1B113415C0D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1B2D484B-15AD-4BA3-ADE6-1F648E650CCA} = {1B2D484B-15AD-4BA3-ADE6-1F648E650CCA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
