@@ -50,6 +50,7 @@ LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
         {
             result = closesocket((*pRTSPClientInstance)->sock);
         }
+        // todo free URI
         free(*pRTSPClientInstance);
         (*pRTSPClientInstance) = NULL;
     }
@@ -64,7 +65,6 @@ LIBRTSP_API void setRTSPURI(RTSPClientHandle handle, char* URI)
     RTSPClientInstance* pRTSPClientInstance = handle;
     if(NULL != pRTSPClientInstance)
     {
-
         if(NULL != pRTSPClientInstance->URI)
         {
             free(pRTSPClientInstance->URI);
