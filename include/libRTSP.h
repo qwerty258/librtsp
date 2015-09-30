@@ -23,11 +23,11 @@ typedef void* RTSPClientHandle;
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPClient(void);
 
+LIBRTSP_API unsigned int freeRTSPClinetDLL(void);
+
 LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void);
 
 LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle);
-
-LIBRTSP_API unsigned int freeRTSPClinetDLL(void);
 
 // API for client usage end
 
