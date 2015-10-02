@@ -86,14 +86,7 @@ LIBRTSP_API unsigned int setRTSPURI(RTSPClientHandle handle, char* URI)
             free(pRTSPClientInstance->URI);
         }
         pRTSPClientInstance->URI = _strdup(URI);
-        if(NULL == pRTSPClientInstance->URI)
-        {
-            setResult = UINT_MAX;
-        }
-        else
-        {
-            setResult = parseRTSPURI(pRTSPClientInstance->URI, &pRTSPClientInstance->IPv4, &pRTSPClientInstance->port);
-        }
+        setResult = parseRTSPURI(pRTSPClientInstance->URI, &pRTSPClientInstance->IPv4, &pRTSPClientInstance->port);
     }
     return setResult;
 }
