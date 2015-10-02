@@ -84,7 +84,7 @@ LIBRTSP_API unsigned int setRTSPURI(RTSPClientHandle handle, char* URI)
 {
     RTSPClientInstance* pRTSPClientInstance = handle;
     unsigned int setResult = UINT_MAX;
-    if(NULL != pRTSPClientInstance)
+    if(NULL != pRTSPClientInstance && NULL != URI)
     {
         if(NULL != pRTSPClientInstance->URI)
         {
