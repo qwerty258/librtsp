@@ -96,9 +96,10 @@ LIBRTSP_API unsigned int setRTSPURI(RTSPClientHandle handle, char* URI)
     return setResult;
 }
 
-LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)
+LIBRTSP_API unsigned int setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)
 {
     RTSPClientInstance* pRTSPClientInstance = handle;
+    unsigned int setResult = UINT_MAX;
     if(NULL != pRTSPClientInstance)
     {
         pRTSPClientInstance->protocol = protocol;
@@ -109,6 +110,7 @@ LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)
             {
                 handleErrorForLibRTSP("socket", __FILE__, __LINE__, WSAGetLastError());
             }
+            setResult = 0;
         }
         else if(RTSPUsingUDP == protocol)
         {
@@ -117,12 +119,14 @@ LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)
             {
                 handleErrorForLibRTSP("socket", __FILE__, __LINE__, WSAGetLastError());
             }
+            setResult = 0;
         }
         else
         {
-            handleErrorForLibRTSP("setRTSPProtocol unknow protocol", __FILE__, __LINE__, 0);
+            setResult = UINT_MAX;
         }
     }
+    return setResult;
 }
 
 LIBRTSP_API unsigned int setUserAgent(RTSPClientHandle handle, char* userAgent)
