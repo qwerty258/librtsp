@@ -5,10 +5,10 @@
 unsigned int parseRTSPURI(char* URI, unsigned long* IPv4, unsigned short* port)
 {
     char* URITemp = _strdup(URI);
-    char* IPString[21];
     char* currnetPosition;
     char* tempPosition;
     char* end;
+    char IPString[21];
     int result;
     unsigned int parseResult = UINT_MAX;
     if(NULL != URITemp)
@@ -22,7 +22,7 @@ unsigned int parseRTSPURI(char* URI, unsigned long* IPv4, unsigned short* port)
         tempPosition = strstr(currnetPosition, ":");
         if(NULL != tempPosition)
         {
-            *port = (unsigned short)strtoul(tempPosition + 1, &end, 10);
+            *port = htons((unsigned short)strtoul(tempPosition + 1, &end, 10));
         }
         memcpy_s(IPString, 20, currnetPosition, tempPosition - currnetPosition);
         result = inet_pton(AF_INET, (char*)IPString, IPv4);
