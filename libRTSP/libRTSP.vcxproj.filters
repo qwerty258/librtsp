@@ -24,12 +24,18 @@
     <ClInclude Include="handleError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RTSPURIParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libRTSP.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="handleError.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RTSPURIParser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
