@@ -48,6 +48,7 @@ LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void)
     if(NULL != pRTSPClientInstance)
     {
         pRTSPClientInstance->sock = INVALID_SOCKET;
+        pRTSPClientInstance->request.userAgent = _strdup("libRTSP");
     }
     return pRTSPClientInstance;
 }
@@ -69,6 +70,10 @@ LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
         if(NULL != (*pRTSPClientInstance)->URI)
         {
             free((*pRTSPClientInstance)->URI);
+        }
+        if(NULL != (*pRTSPClientInstance)->request.userAgent)
+        {
+            free((*pRTSPClientInstance)->request.userAgent);
         }
         free(*pRTSPClientInstance);
         (*pRTSPClientInstance) = NULL;
