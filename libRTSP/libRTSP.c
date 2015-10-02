@@ -75,9 +75,10 @@ LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
     }
 }
 
-LIBRTSP_API void setRTSPURI(RTSPClientHandle handle, char* URI)
+LIBRTSP_API unsigned int setRTSPURI(RTSPClientHandle handle, char* URI)
 {
     RTSPClientInstance* pRTSPClientInstance = handle;
+    unsigned int setResult = UINT_MAX;
     if(NULL != pRTSPClientInstance)
     {
         if(NULL != pRTSPClientInstance->URI)
@@ -85,7 +86,16 @@ LIBRTSP_API void setRTSPURI(RTSPClientHandle handle, char* URI)
             free(pRTSPClientInstance->URI);
         }
         pRTSPClientInstance->URI = _strdup(URI);
+        if(NULL == pRTSPClientInstance->URI)
+        {
+            setResult = UINT_MAX;
+        }
+        else
+        {
+            setResult = parseRTSPURI(pRTSPClientInstance->URI, &pRTSPClientInstance->IPv4, &pRTSPClientInstance->port);
+        }
     }
+    return setResult;
 }
 
 LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)

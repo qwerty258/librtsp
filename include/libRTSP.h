@@ -36,7 +36,7 @@ LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void);
 
 LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle);
 
-LIBRTSP_API void setRTSPURI(RTSPClientHandle handle, char* URI);
+LIBRTSP_API unsigned int setRTSPURI(RTSPClientHandle handle, char* URI);
 
 LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol);
 
