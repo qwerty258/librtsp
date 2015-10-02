@@ -67,7 +67,10 @@ LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
                 handleErrorForLibRTSP("closesocket", __FILE__, __LINE__, WSAGetLastError());
             }
         }
-        // todo free URI
+        if(NULL != (*pRTSPClientInstance)->URI)
+        {
+            free((*pRTSPClientInstance)->URI);
+        }
         free(*pRTSPClientInstance);
         (*pRTSPClientInstance) = NULL;
     }
