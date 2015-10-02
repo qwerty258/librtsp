@@ -125,6 +125,24 @@ LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)
     }
 }
 
+LIBRTSP_API unsigned int setUserAgent(RTSPClientHandle handle, char* userAgent)
+{
+    RTSPClientInstance* pRTSPClientInstance = handle;
+    if(NULL != pRTSPClientInstance->request.userAgent)
+    {
+        free(pRTSPClientInstance->request.userAgent);
+    }
+    pRTSPClientInstance->request.userAgent = _strdup(userAgent);
+    if(NULL == pRTSPClientInstance->request.userAgent)
+    {
+        return UINT_MAX;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 LIBRTSP_API unsigned int initializeDLLAsRTSPServer(void)
 {
     unsigned int result = initializeDLLAsRTSPClient();

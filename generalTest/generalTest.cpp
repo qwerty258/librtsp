@@ -10,6 +10,8 @@ int main(int argc, char* argv[])
 
     setRTSPProtocol(handle, RTSPUsingTCP);
 
+    result = setUserAgent(handle, "test UserAgent");
+
     freeRTSPHandle(&handle);
 
     result = freeRTSPClinetDLL();
