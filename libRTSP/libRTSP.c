@@ -103,6 +103,7 @@ LIBRTSP_API void setRTSPProtocol(RTSPClientHandle handle, RTSPProtocol protocol)
     RTSPClientInstance* pRTSPClientInstance = handle;
     if(NULL != pRTSPClientInstance)
     {
+        pRTSPClientInstance->protocol = protocol;
         if(RTSPUsingTCP == protocol)
         {
             pRTSPClientInstance->sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
