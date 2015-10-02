@@ -36,6 +36,8 @@ typedef struct _RTSPClientInstance
     char* URI;
     RTSPProtocol protocol;
     SOCKET sock;
+    ULONG IPv4;
+    USHORT port;
     RTSPRequest request;
     RTSPResponse response;
 }RTSPClientInstance;
