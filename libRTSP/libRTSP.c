@@ -2,23 +2,21 @@
 #include "handleError.h"
 #include "dataTypes.h"
 #include <limits.h>
-// Windows Header Files:
-#include <SDKDDKVer.h>
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-#include <Windows.h>
 
 #ifdef _MSC_VER
 #ifdef _DEBUG // for memory leak check
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
-#ifdef strdup
-#undef strdup
-#endif // strdup
+#else
+#define strdup _strdup
 #endif // _DEBUG
 #endif // _MSC_VER
 
-#define strdup _strdup
+// Windows Header Files:
+#include <SDKDDKVer.h>
+#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+#include <Windows.h>
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPClient(void)
 {
