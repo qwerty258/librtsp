@@ -49,14 +49,14 @@ LIBRTSP_API void freeRTSPHandle(RTSPClientHandle* handle)
         if(INVALID_SOCKET != (*pRTSPClientInstance)->sock)
         {
             result = closesocket((*pRTSPClientInstance)->sock);
+            if(0 != result)
+            {
+                handleErrorForLibRTSP("closesocket", __FILE__, __LINE__, WSAGetLastError());
+            }
         }
         // todo free URI
         free(*pRTSPClientInstance);
         (*pRTSPClientInstance) = NULL;
-    }
-    if(0 != result)
-    {
-        handleErrorForLibRTSP("closesocket", __FILE__, __LINE__, WSAGetLastError());
     }
 }
 
