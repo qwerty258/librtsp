@@ -7,10 +7,25 @@
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 #include <Windows.h>
 
+#ifdef _MSC_VER
+#ifdef _DEBUG // for memory leak check
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#ifdef strdup
+#undef strdup
+#endif // strdup
+#endif // _DEBUG
+#endif // _MSC_VER
+
 #define strdup _strdup
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPClient(void)
 {
+#ifdef _DEBUG
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif // _DEBUG
+
     WSADATA wsaData;
     int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if(0 != result)
