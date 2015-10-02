@@ -1,6 +1,7 @@
 #include "libRTSP.h"
-#include "handleError.h"
 #include "dataTypes.h"
+#include "handleError.h"
+#include "RTSPURIParser.h"
 #include <limits.h>
 
 #ifdef _MSC_VER
@@ -8,8 +9,6 @@
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
-#else
-#define strdup _strdup
 #endif // _DEBUG
 #endif // _MSC_VER
 
@@ -85,7 +84,7 @@ LIBRTSP_API void setRTSPURI(RTSPClientHandle handle, char* URI)
         {
             free(pRTSPClientInstance->URI);
         }
-        pRTSPClientInstance->URI = strdup(URI);
+        pRTSPClientInstance->URI = _strdup(URI);
     }
 }
 
