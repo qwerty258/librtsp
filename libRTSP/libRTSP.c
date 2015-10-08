@@ -90,7 +90,9 @@ LIBRTSP_API unsigned int setRTSPURI(RTSPClientHandle handle, char* URI)
             free(pRTSPClientInstance->URI);
         }
         pRTSPClientInstance->URI = _strdup(URI);
-        setResult = parseRTSPURI(pRTSPClientInstance->URI, &pRTSPClientInstance->IPv4, &pRTSPClientInstance->port);
+        // to do: implement IPv6
+        pRTSPClientInstance->serverSockaddr.sin_family = AF_INET;
+        setResult = parseRTSPURI(pRTSPClientInstance->URI, &pRTSPClientInstance->serverSockaddr.sin_addr.S_un.S_addr, &pRTSPClientInstance->serverSockaddr.sin_port);
     }
     return setResult;
 }
@@ -155,34 +157,26 @@ LIBRTSP_API unsigned int tryConnect(RTSPClientHandle handle)
 {
     RTSPClientInstance* pRTSPClientInstance = handle;
     unsigned int tryConnectResult = UINT_MAX;
-    LPSOCKADDR_IN serverSockaddr = calloc(1, sizeof(struct sockaddr_in));
-    if(NULL != serverSockaddr)
+    if(RTSPUsingTCP == pRTSPClientInstance->protocol)
     {
-        serverSockaddr->sin_addr.S_un.S_addr = pRTSPClientInstance->IPv4;
-        serverSockaddr->sin_family = AF_INET;
-        serverSockaddr->sin_port = pRTSPClientInstance->port;
-        if(RTSPUsingTCP == pRTSPClientInstance->protocol)
+        tryConnectResult = connect(pRTSPClientInstance->sock, (struct sockaddr*)&pRTSPClientInstance->serverSockaddr, sizeof(sockaddr_in));
+        if(0 != tryConnectResult)
         {
-            tryConnectResult = connect(pRTSPClientInstance->sock, serverSockaddr, sizeof(struct sockaddr_in));
-            if(0 != tryConnectResult)
-            {
-                tryConnectResult = UINT_MAX;
-                handleErrorForLibRTSP("connect", __FILE__, __LINE__, WSAGetLastError());
-            }
-            else
-            {
-                tryConnectResult = 0;
-            }
-        }
-        else if(RTSPUsingUDP == pRTSPClientInstance->protocol)
-        {
-            tryConnectResult = 0;
+            tryConnectResult = UINT_MAX;
+            handleErrorForLibRTSP("connect", __FILE__, __LINE__, WSAGetLastError());
         }
         else
         {
-            tryConnectResult = UINT_MAX;
+            tryConnectResult = 0;
         }
-        free(serverSockaddr);
+    }
+    else if(RTSPUsingUDP == pRTSPClientInstance->protocol)
+    {
+        tryConnectResult = 0;
+    }
+    else
+    {
+        tryConnectResult = UINT_MAX;
     }
     return tryConnectResult;
 }
