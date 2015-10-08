@@ -14,7 +14,6 @@
 
 // Windows Header Files:
 #include <SDKDDKVer.h>
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 #include <Windows.h>
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPClient(void)
@@ -150,6 +149,42 @@ LIBRTSP_API unsigned int setUserAgent(RTSPClientHandle handle, char* userAgent)
         }
     }
     return setResult;
+}
+
+LIBRTSP_API unsigned int tryConnect(RTSPClientHandle handle)
+{
+    RTSPClientInstance* pRTSPClientInstance = handle;
+    unsigned int tryConnectResult = UINT_MAX;
+    LPSOCKADDR_IN serverSockaddr = calloc(1, sizeof(struct sockaddr_in));
+    if(NULL != serverSockaddr)
+    {
+        serverSockaddr->sin_addr.S_un.S_addr = pRTSPClientInstance->IPv4;
+        serverSockaddr->sin_family = AF_INET;
+        serverSockaddr->sin_port = pRTSPClientInstance->port;
+        if(RTSPUsingTCP == pRTSPClientInstance->protocol)
+        {
+            tryConnectResult = connect(pRTSPClientInstance->sock, serverSockaddr, sizeof(struct sockaddr_in));
+            if(0 != tryConnectResult)
+            {
+                tryConnectResult = UINT_MAX;
+                handleErrorForLibRTSP("connect", __FILE__, __LINE__, WSAGetLastError());
+            }
+            else
+            {
+                tryConnectResult = 0;
+            }
+        }
+        else if(RTSPUsingUDP == pRTSPClientInstance->protocol)
+        {
+            tryConnectResult = 0;
+        }
+        else
+        {
+            tryConnectResult = UINT_MAX;
+        }
+        free(serverSockaddr);
+    }
+    return tryConnectResult;
 }
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPServer(void)
