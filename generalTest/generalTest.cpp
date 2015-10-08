@@ -12,6 +12,8 @@ int main(int argc, char* argv[])
 
     result = setUserAgent(handle, "test UserAgent");
 
+    result = tryConnect(handle);
+
     freeRTSPHandle(&handle);
 
     result = freeRTSPClinetDLL();
