@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 
     result = setUserAgent(handle, "test UserAgent");
 
-    result = tryConnect(handle);
+    result = tryConnectToServer(handle);
 
     freeRTSPHandle(&handle);
 

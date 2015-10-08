@@ -153,7 +153,7 @@ LIBRTSP_API unsigned int setUserAgent(RTSPClientHandle handle, char* userAgent)
     return setResult;
 }
 
-LIBRTSP_API unsigned int tryConnect(RTSPClientHandle handle)
+LIBRTSP_API unsigned int tryConnectToServer(RTSPClientHandle handle)
 {
     RTSPClientInstance* pRTSPClientInstance = handle;
     unsigned int tryConnectResult = UINT_MAX;
