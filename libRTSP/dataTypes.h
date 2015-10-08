@@ -2,6 +2,8 @@
 
 #include <WinSock2.h>
 
+typedef struct sockaddr_in sockaddr_in;
+
 typedef enum _RTSPMethod
 {
     MethodUnspecified = 0,
@@ -36,8 +38,7 @@ typedef struct _RTSPClientInstance
     char* URI;
     RTSPProtocol protocol;
     SOCKET sock;
-    ULONG IPv4;
-    USHORT port;
+    sockaddr_in serverSockaddr;
     RTSPRequest request;
     RTSPResponse response;
 }RTSPClientInstance;
