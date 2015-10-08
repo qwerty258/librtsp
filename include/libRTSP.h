@@ -44,6 +44,8 @@ LIBRTSP_API unsigned int setUserAgent(RTSPClientHandle handle, char* userAgent);
 
 LIBRTSP_API unsigned int tryConnectToServer(RTSPClientHandle handle);
 
+LIBRTSP_API unsigned int executeOPTIONS(RTSPClientHandle handle);
+
 // API for client usage end
 
 // API for server usage begin

@@ -47,6 +47,7 @@ LIBRTSP_API RTSPClientHandle getNewRTSPHandle(void)
     if(NULL != pRTSPClientInstance)
     {
         pRTSPClientInstance->sock = INVALID_SOCKET;
+        pRTSPClientInstance->request.sequenceNumber = 1;
         pRTSPClientInstance->request.userAgent = _strdup("libRTSP");
     }
     return pRTSPClientInstance;
@@ -179,6 +180,15 @@ LIBRTSP_API unsigned int tryConnectToServer(RTSPClientHandle handle)
         tryConnectResult = UINT_MAX;
     }
     return tryConnectResult;
+}
+
+LIBRTSP_API unsigned int executeOPTIONS(RTSPClientHandle handle)
+{
+    RTSPClientInstance* pRTSPClientInstance = handle;
+    unsigned int executeResult = UINT_MAX;
+    pRTSPClientInstance->request.method = OPTIONS;
+    // to do: request generater
+    return executeResult;
 }
 
 LIBRTSP_API unsigned int initializeDLLAsRTSPServer(void)

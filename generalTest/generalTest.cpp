@@ -14,6 +14,8 @@ int main(int argc, char* argv[])
 
     result = tryConnectToServer(handle);
 
+    result = executeOPTIONS(handle);
+
     freeRTSPHandle(&handle);
 
     result = freeRTSPClinetDLL();
